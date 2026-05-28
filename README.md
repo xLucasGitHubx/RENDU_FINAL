@@ -2,9 +2,9 @@
 
 Deux projets de Machine Learning autour de la pandémie de COVID-19, livrés dans le cadre d'un rendu final.
 
-| Projet | Type de ML | Interface livrée |
-|--------|------------|------------------|
-| **1. Chatbot médical** | Classification supervisée + Clustering | App **Streamlit** (`app.py`) |
+| Projet                 | Type de ML                              | Interface livrée                  |
+| ---------------------- | --------------------------------------- | --------------------------------- |
+| **1. Chatbot médical** | Classification supervisée + Clustering  | App **Streamlit** (`app.py`)      |
 | **2. Carte dynamique** | Clustering géographique + Visualisation | Dashboard **HTML** (`index.html`) |
 
 Chaque projet possède son propre notebook Jupyter détaillé (EDA, modélisation, évaluation, conclusion).
@@ -44,6 +44,7 @@ RENDU_FINAL/
 ## Installation
 
 ### Prérequis
+
 - Python **3.10+** (testé sur 3.12)
 - pip
 - Navigateur web moderne
@@ -127,6 +128,7 @@ jupyter notebook
 ```
 
 Puis ouvrir :
+
 - `Projet1_Chatbot_COVID/projet_chatbot.ipynb`
 - `Projet2_Carte_Dynamique/carte-dynamique.ipynb`
 
@@ -137,9 +139,11 @@ Les sorties (graphiques, tableaux, résultats) sont déjà visibles dans les fic
 ## Projet 1 — Chatbot médical COVID-19
 
 ### Objectif
+
 Construire un chatbot sous forme d'interrogatoire médical aidant à pré-diagnostiquer la COVID-19 à partir des symptômes du patient.
 
 ### Pipeline
+
 1. **Génération des données** : produit cartésien de 7 variables catégorielles → **316 800 combinaisons** (10 pays × 5 âges × 3 genres × 16 symptômes × 11 symptômes secondaires × 4 sévérités × 3 contacts).
 2. **Labelisation** : règle à base de score clinique inspirée des directives OMS (pondérations sur Fever, Dry-Cough, Difficulty-in-Breathing, etc., multiplicateur Contact, ajout selon Severity et Age).
 3. **Feature engineering** : multi-hot encoding pour les listes de symptômes, One-Hot Encoding pour les variables simples.
@@ -149,13 +153,13 @@ Construire un chatbot sous forme d'interrogatoire médical aidant à pré-diagno
 
 ### Résultats clés
 
-| Modèle | F1-score | AUC-ROC |
-|--------|----------|---------|
-| Gradient Boosting | **0.9999** | ~1.000 |
-| Random Forest | 0.997 | ~0.999 |
-| SVM (Linear, calibré) | 0.989 | ~0.998 |
-| Logistic Regression | 0.988 | ~0.997 |
-| KNN | 0.908 | ~0.95 |
+| Modèle                | F1-score   | AUC-ROC |
+| --------------------- | ---------- | ------- |
+| Gradient Boosting     | **0.9999** | ~1.000  |
+| Random Forest         | 0.997      | ~0.999  |
+| SVM (Linear, calibré) | 0.989      | ~0.998  |
+| Logistic Regression   | 0.988      | ~0.997  |
+| KNN                   | 0.908      | ~0.95   |
 
 - Le **meilleur modèle** est Gradient Boosting (F1=0.9999) ; l'app Streamlit livrée utilise un **Random Forest** (compromis taille/performance, F1=0.997).
 - Le chatbot prédit correctement les cas-tests typiques (ex : patient 60+, contact Yes, symptômes sévères → POSITIF 100%).
@@ -166,9 +170,11 @@ Construire un chatbot sous forme d'interrogatoire médical aidant à pré-diagno
 ## Projet 2 — Carte dynamique COVID-19
 
 ### Objectif
+
 Visualiser sur des cartes interactives la progression de l'épidémie COVID-19 en France (par région et département), et identifier des clusters géographiques homogènes par apprentissage non supervisé.
 
 ### Pipeline
+
 1. **Données géographiques** : contours GeoJSON régions (13) et départements (96) depuis [gregoiredavid/france-geojson](https://github.com/gregoiredavid/france-geojson).
 2. **Données épidémiques** : hospitalisations / réanimations / décès / retours à domicile depuis Santé Publique France ([data.gouv.fr](https://www.data.gouv.fr/fr/datasets/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/)).
 3. **Jointure** : sur le code INSEE des départements, agrégation par région via table officielle de correspondance.
@@ -190,11 +196,13 @@ Visualiser sur des cartes interactives la progression de l'épidémie COVID-19 e
 ## Données
 
 ### Projet 1
+
 - **Source** : [Kaggle COVID-19 Symptoms Checker](https://www.kaggle.com/iamhungundji/covid19-symptoms-checker)
 - `Raw-Data.csv` (fourni) — vocabulaire des labels
 - `Cleaned-Data.csv` (généré par le notebook ou par `train_model.py`) — 316 800 combinaisons étiquetées
 
 ### Projet 2
+
 - **Contours** : [gregoiredavid/france-geojson](https://github.com/gregoiredavid/france-geojson) (régions + départements, IGN)
 - **Indicateurs hospitaliers** : [Santé Publique France via data.gouv.fr](https://www.data.gouv.fr/fr/datasets/donnees-hospitalieres-relatives-a-lepidemie-de-covid-19/)
 - **Vaccination** : [SPF / data.gouv.fr](https://www.data.gouv.fr/fr/datasets/donnees-relatives-aux-personnes-vaccinees-contre-la-covid-19-1/)
@@ -225,4 +233,5 @@ Visualiser sur des cartes interactives la progression de l'épidémie COVID-19 e
 
 ## Auteur
 
-**Lucas Madjinda** — lucasmadjinda@gmail.com
+**Lucas Madjinda**
+**Junior Chimene**
