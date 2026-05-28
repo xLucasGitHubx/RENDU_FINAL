@@ -1,0 +1,35 @@
+# Notes internes (non destinees au correcteur)
+STATUS.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Environnements virtuels
+venv/
+.venv/
+env/
+ENV/
+
+# IDE / Editeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
